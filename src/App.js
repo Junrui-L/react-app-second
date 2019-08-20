@@ -1,9 +1,10 @@
 import React from 'react';
-// import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
-// import ListComponent from './components/listComponent'
-// import StringComponent from './components/stringComponent'
+import ListComponent from './components/listComponent'
+import StringComponent from './components/stringComponent'
 import ErrorBoundary from './components/errorBoundary'
+import Modal from './components/modal'
 // function App() {
 //   return (
 //     <div className="App">
@@ -24,7 +25,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: { name: "react"}
+      user: { name: "react"},
+      showModal: false
     } 
 
   }
@@ -33,15 +35,42 @@ class App extends React.Component {
     this.setState({ user: null })
   }
 
+  // 关闭弹窗
+  closeModal = () => {
+    this.setState({ showModal: false })
+  }
+
+  // 打开弹窗
+  openModal() {
+    this.setState({ showModal:true })
+  }
   render() {
     return (
       <div>
-        <ErrorBoundary>
-          <Profile user = {this.state.user}></Profile>
-        </ErrorBoundary>
+        <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+         <div>
+          <div>
+            <h2 onClick={ () => this.openModal()}>showMoal</h2>
+            {
+              this.state.showModal && (<Modal onClose={this.closeModal} children="我是共和国">33333</Modal>)
+            }
+          </div>
+
+          Edit <code>src/App.js</code> and save to reload.
+          </div>
+         <ListComponent></ListComponent>
+          <div>Learn React</div>
+         <StringComponent></StringComponent>
+         <ErrorBoundary>
+           <Profile user = {this.state.user}></Profile>
+         </ErrorBoundary>
         <button onClick={this.onClick}>更新</button>
-      </div>
-    )
-   }
+       </header>
+      </div>  
+    </div>
+  )
+ }
 }
 export default App;

@@ -31,3 +31,40 @@
     transform: rotate(360deg);
   }
 }
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #282c34;
+  opacity: 0.7;
+
+}
+
+.wrap {
+  position: absolute;
+  top: 200px;
+  left: 300px;
+  width: 300px;
+  height: 500px;
+  background: #fff
+}
+
+.wrap .close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 100px;
+  height: 100px;
+  background: #f00;
+
+}
+
+.wrap .content {
+  height: 200px;
+  line-height: 200px;
+  font-size: 28px;
+  color: chartreuse
+}
