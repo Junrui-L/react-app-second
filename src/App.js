@@ -5,6 +5,7 @@ import ListComponent from './components/listComponent'
 import StringComponent from './components/stringComponent'
 import ErrorBoundary from './components/errorBoundary'
 import Modal from './components/modal'
+import AutoFocusTextInput from './components/states'
 // function App() {
 //   return (
 //     <div className="App">
@@ -28,9 +29,15 @@ class App extends React.Component {
       user: { name: "react"},
       showModal: false
     } 
+    this.handleClick = this.handleClick.bind(this)
 
   }
 
+  handleClick() {
+    // 通过ref 调用AutoFocusTextInput 组件的方法
+    console.log('失去焦点')
+    this.inputInstance.blur();
+  }
   onClick = () => {
     this.setState({ user: null })
   }
@@ -57,7 +64,12 @@ class App extends React.Component {
               this.state.showModal && (<Modal onClose={this.closeModal} children="我是共和国">33333</Modal>)
             }
           </div>
-
+            <div>
+              <AutoFocusTextInput 
+                ref = { (input) => {this.inputInstance = input} }
+              />
+              <button onClick = {this.handleClick}>失去焦点</button>
+            </div>
           Edit <code>src/App.js</code> and save to reload.
           </div>
          <ListComponent></ListComponent>
